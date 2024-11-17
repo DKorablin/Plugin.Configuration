@@ -1,2 +1,2 @@
-# Plugin.ConfigurationHttp
-Configuration plugin for SAL host convenient for service hosts
+# Plugin.Configuration
+Configuration plugin for SAL Windows hosts applications
