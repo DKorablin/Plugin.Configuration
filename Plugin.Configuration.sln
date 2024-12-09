@@ -6,14 +6,18 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D3564769-BB17-4BF1-816F-978842BA22CF}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		.github\dependabot.yml = .github\dependabot.yml
 		Plugin.Configuration.dll.nuspec = Plugin.Configuration.dll.nuspec
 		README.md = README.md
-		.github\workflows\release.yml = .github\workflows\release.yml
-		.github\workflows\test.yml = .github\workflows\test.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Configuration35", "Plugin.Configuration\Plugin.Configuration35.csproj", "{26F857FE-E4B6-4A77-A700-87783870C47B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{E3531BF8-D9E6-4D0D-A374-3255A81C6A79}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+		.github\workflows\release.yml = .github\workflows\release.yml
+		.github\workflows\test.yml = .github\workflows\test.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +32,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E3531BF8-D9E6-4D0D-A374-3255A81C6A79} = {D3564769-BB17-4BF1-816F-978842BA22CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0C5D951-0FE5-478F-A0D2-F19B13F95FAF}

@@ -18,6 +18,6 @@ using System.Runtime.InteropServices;
 #endif
 [assembly: AssemblyCompany("Danila Korablin")]
 [assembly: AssemblyProduct("Plugin.Configuration")]
-[assembly: AssemblyCopyright("Copyright © Danila Korablin 2012-2023")]
+[assembly: AssemblyCopyright("Copyright © Danila Korablin 2012-2024")]
 
 #endif
