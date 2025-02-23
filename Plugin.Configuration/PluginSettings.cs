@@ -9,6 +9,7 @@ namespace Plugin.Configuration
 	{
 		private Int32 _splitterDistance;
 		private Size _windowSize = Size.Empty;
+		private Point _windowLocation = Point.Empty;
 
 		[Category("UI")]
 		[DisplayName("Splitter distance")]
@@ -16,7 +17,7 @@ namespace Plugin.Configuration
 		public Int32 SplitterDistance
 		{
 			get => this._splitterDistance;
-			set => this.SetField(ref this._splitterDistance, value, nameof(SplitterDistance));
+			set => this.SetField(ref this._splitterDistance, value, nameof(this.SplitterDistance));
 		}
 
 		[Category("UI")]
@@ -25,7 +26,16 @@ namespace Plugin.Configuration
 		public Size WindowSize
 		{
 			get => this._windowSize;
-			set => this.SetField(ref this._windowSize, value, nameof(WindowSize));
+			set => this.SetField(ref this._windowSize, value, nameof(this.WindowSize));
+		}
+
+		[Category("UI")]
+		[DisplayName("Window location")]
+		[Description("Last window location")]
+		public Point WindowLocation
+		{
+			get => this._windowLocation;
+			set => this.SetField(ref this._windowLocation, value, nameof(this.WindowLocation));
 		}
 
 		#region INotifyPropertyChanged

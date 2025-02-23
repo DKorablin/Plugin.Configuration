@@ -24,13 +24,9 @@ namespace Plugin.Configuration
 		public PluginsDlg(PluginWindows plugin)
 		{
 			this.Plugin = plugin;
-			InitializeComponent();
+			this.InitializeComponent();
 
 			splitInformation.Panel2Collapsed = true;
-			if(this.Plugin.Settings.SplitterDistance > 0)
-				splitMain.SplitterDistance = this.Plugin.Settings.SplitterDistance;
-			if(this.Plugin.Settings.WindowSize != Size.Empty)
-				base.Size = this.Plugin.Settings.WindowSize;
 
 			tabMain.Controls.Remove(tabSettings);
 
@@ -39,11 +35,25 @@ namespace Plugin.Configuration
 				base.Icon = ico;
 		}
 
-		protected override void OnClosing(CancelEventArgs e)
+		protected override void OnLoad(EventArgs e)
+		{
+			if(this.Plugin.Settings.SplitterDistance > 0)
+				splitMain.SplitterDistance = this.Plugin.Settings.SplitterDistance;
+
+			if(this.Plugin.Settings.WindowSize != Size.Empty)
+				this.Size = this.Plugin.Settings.WindowSize;
+			if(this.Plugin.Settings.WindowLocation != Point.Empty)
+				this.Location = this.Plugin.Settings.WindowLocation;
+
+			base.OnLoad(e);
+		}
+
+		protected override void OnClosed(EventArgs e)
 		{
 			this.Plugin.Settings.SplitterDistance = splitMain.SplitterDistance;
-			this.Plugin.Settings.WindowSize = base.Size;
-			base.OnClosing(e);
+			this.Plugin.Settings.WindowSize = this.Size;
+			this.Plugin.Settings.WindowLocation = this.Location;
+			base.OnClosed(e);
 		}
 
 		private void LoadPlugins(String searchText=null)

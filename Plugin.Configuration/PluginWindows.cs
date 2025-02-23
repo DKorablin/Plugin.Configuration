@@ -8,12 +8,10 @@ namespace Plugin.Configuration
 {
 	public class PluginWindows : IPlugin, IPluginSettings<PluginSettings>
 	{
-		#region Fields
 		private PluginSettings _settings;
 		private TraceSource _trace;
 		private PluginsDlg _plugins;
-		#endregion Fields
-		#region Properties
+
 		internal TraceSource Trace => this._trace ?? (this._trace = PluginWindows.CreateTraceSource<PluginWindows>());
 
 		internal IHostWindows HostWindows { get; }
@@ -34,8 +32,7 @@ namespace Plugin.Configuration
 				return this._settings;
 			}
 		}
-		#endregion Properties
-		#region Methods
+
 		public PluginWindows(IHostWindows hostWindows)
 			=> this.HostWindows = hostWindows ?? throw new ArgumentNullException(nameof(hostWindows));
 
@@ -71,8 +68,7 @@ namespace Plugin.Configuration
 			result.Listeners.AddRange(System.Diagnostics.Trace.Listeners);
 			return result;
 		}
-		#endregion Methods
-		#region Event Handlers
+
 		private void ConfigMenu_Click(Object sender, EventArgs e)
 		{
 			if(this._plugins == null)
@@ -94,6 +90,5 @@ namespace Plugin.Configuration
 				this._plugins = null;
 			}
 		}
-		#endregion Event Handlers
 	}
 }
