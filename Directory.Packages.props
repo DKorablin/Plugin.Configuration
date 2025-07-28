@@ -1,0 +1,8 @@
+<Project>
+	<PropertyGroup>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+	</PropertyGroup>
+	<ItemGroup>
+		<GlobalPackageReference Include="SAL.Windows" Version="1.2.10" />
+	</ItemGroup>
+</Project>

@@ -7,9 +7,9 @@ namespace Plugin.Configuration
 {
 	internal static class Utils
 	{
-		/// <summary>Получить список поисковых параметров в плагине</summary>
-		/// <param name="plugin">Экземпляр плагин для возврата поисковых строк</param>
-		/// <returns>Найденные поисковые строки в плагине</returns>
+		/// <summary>Get a list of search parameters in the plugin</summary>
+		/// <param name="plugin">Instance of plugin for returning search strings</param>
+		/// <returns>Search strings found in plugin</returns>
 		public static IEnumerable<String> GetPluginSearchMembers(IPluginDescription plugin)
 		{
 			foreach(String value in SearchProperties(plugin, false))
@@ -21,10 +21,10 @@ namespace Plugin.Configuration
 					yield return value;
 		}
 
-		/// <summary>Поиск по свойствам экземпляра объекта</summary>
-		/// <param name="instance">Объект, по свойствам которого поискать</param>
-		/// <param name="searchAttributes">Поиск по атрибутам каждого свойства</param>
-		/// <returns>Найденные поисковые строки в свойствах экземпляра объекта</returns>
+		/// <summary>Search by object instance properties</summary>
+		/// <param name="instance">The object whose properties to search by</param>
+		/// <param name="searchAttributes">Search by attributes of each property</param>
+		/// <returns>Search strings found in object instance properties</returns>
 		private static IEnumerable<String> SearchProperties(Object instance, Boolean searchAttributes)
 		{
 			PropertyInfo[] properties = instance.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty | BindingFlags.FlattenHierarchy);
@@ -33,7 +33,7 @@ namespace Plugin.Configuration
 				yield return property.Name;
 
 				if(searchAttributes)
-				{//Ищем по всем атрибутам, дабы не хардкодить конкретные атрибуты
+				{//We search by all attributes so as not to hardcode specific attributes
 					Object[] attributes = property.GetCustomAttributes(false);
 					if(attributes != null)
 						foreach(Object attribute in attributes)
@@ -43,7 +43,7 @@ namespace Plugin.Configuration
 
 				if(property.CanRead
 					&& property.GetIndexParameters().Length == 0
-					&& Array.Exists<Type>(property.PropertyType.GetInterfaces(), p => { return p == typeof(IComparable); }))
+					&& Array.Exists<Type>(property.PropertyType.GetInterfaces(), p => p == typeof(IComparable)))
 				{
 					Object value = property.GetValue(instance, null);
 					if(value != null)

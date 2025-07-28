@@ -15,7 +15,7 @@ namespace Plugin.Configuration
 	{
 		protected PluginWindows Plugin { get; private set; }
 
-		/// <summary>Выбранный плагин в списке</summary>
+		/// <summary>The selected plugin in the list</summary>
 		protected IPluginDescription SelectedPlugin
 		{
 			get => lvPlugins.SelectedItems.Count > 0 ? (IPluginDescription)lvPlugins.SelectedItems[0].Tag : null;
@@ -70,7 +70,7 @@ namespace Plugin.Configuration
 				foreach(IPluginDescription plugin in this.Plugin.HostWindows.Plugins.OrderBy(p => p.Name))
 				{
 					if(isSearch)
-					{//Пробуем поискать в плагине поисковый текст
+					{//Let's try to search for search text in the plugin
 						Boolean isFound = false;
 						foreach(String str in Utils.GetPluginSearchMembers(plugin))
 							if(str.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) > -1)
@@ -79,7 +79,7 @@ namespace Plugin.Configuration
 								break;
 							}
 
-						if(!isFound)//Поисковый текст - не найден. Пропускаем плагин
+						if(!isFound)//Search text - not found. Skipping plugin
 							continue;
 					}
 
@@ -119,7 +119,7 @@ namespace Plugin.Configuration
 			try
 			{
 				if(tabOptions.Controls.Count > 0)
-				{//Удаление всех элементов
+				{//Delete all elements
 					if(tabOptions.Controls[0] != ctlOptions)
 						tabOptions.Controls[0].Dispose();
 					tabOptions.Controls.Clear();
@@ -137,14 +137,14 @@ namespace Plugin.Configuration
 					txtDescription.Text = plugin.Description;
 
 					tt.SetToolTip(txtSource, plugin.Source);
-					if(plugin.Instance is IPluginSettings && tabSettings.Parent == null)//Установка диалога базовых настроек плагина
+					if(plugin.Instance is IPluginSettings && tabSettings.Parent == null)//Setting up the basic plugin settings dialog
 						tabMain.Controls.Add(tabSettings);
 					else if(tabSettings.Parent != null)
 						tabMain.Controls.Remove(tabSettings);
 
 					IPluginMethodInfo member = plugin.Type.GetMember<IPluginMethodInfo>(PluginMessage.GetPluginOptionsControl);
 					UserControl ctrl = member == null ? null : (UserControl)member.Invoke();
-					if(ctrl == null)//Установка дополнительного диалога настроек плагина
+					if(ctrl == null)//Installing an additional plugin settings dialog
 					{
 						if(tabOptions.Parent != null)
 							tabMain.TabPages.Remove(tabOptions);
@@ -174,7 +174,7 @@ namespace Plugin.Configuration
 
 			splitInformation.Panel2Collapsed = true;
 
-			if(tabSettings.Parent != null)//Удаление вкладки с базовыми настройками
+			if(tabSettings.Parent != null)//Removing the basic settings tab
 				tabMain.TabPages.Remove(tabSettings);
 			if(tabOptions.Parent == null)
 				tabMain.TabPages.Insert(0, tabOptions);
@@ -184,18 +184,18 @@ namespace Plugin.Configuration
 		private void lvPlugins_SizeChanged(Object sender, EventArgs e)
 			=> lvPlugins.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
-		/// <summary>Если плагин поддерживает настройку, то отобразить вкладку с настройками</summary>
+		/// <summary>If the plugin supports customization, then display the settings tab</summary>
 		private void tabMain_SelectedIndexChanged(Object sender, EventArgs e)
 		{
 			if(tabMain.SelectedTab == tabSettings
 				&& pgSettings.SelectedObject == null)
-			{//Отображение базовых настрок плагина
+			{//Displaying basic plugin settings
 				IPluginSettings settings = (IPluginSettings)this.SelectedPlugin.Instance;
 				pgSettings.SelectedObject = settings.Settings;
 			}
 		}
 
-		/// <summary>Изменение параметров плагина</summary>
+		/// <summary>Changing plugin parameters</summary>
 		private void pgSettings_PropertyValueChanged(Object sender, PropertyValueChangedEventArgs e)
 		{
 			base.Cursor = Cursors.WaitCursor;
@@ -264,7 +264,7 @@ namespace Plugin.Configuration
 		private void cmsPlugin_ItemClicked(Object sender, ToolStripItemClickedEventArgs e)
 		{
 			IPluginDescription plugin = this.SelectedPlugin;
-			if(e.ClickedItem == tsmiReset)//Удаление всех параметров настроек выбранного плагина
+			if(e.ClickedItem == tsmiReset)//Delete all settings parameters of the selected plugin
 			{
 				if(MessageBox.Show(Resources.msgConfirmPluginReset, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 				{
@@ -272,14 +272,14 @@ namespace Plugin.Configuration
 					settings.RemoveAssemblyParameter();
 
 					pgSettings.SelectedObject = null;
-					this.tabMain_SelectedIndexChanged(sender, e);//Для обновления списка свойств
+					this.tabMain_SelectedIndexChanged(sender, e);//To update the property list
 				}
-			}/* else if(e.ClickedItem == tsmiOptions)//Дополнительные настройки приложения
+			}/* else if(e.ClickedItem == tsmiOptions)//Additional application settings
 			{
 				using(Form dlg = ((IConfigurable)plugin.Instance).MainInterface as Form)
 					if(dlg != null)
 						dlg.ShowDialog();
-			}*/ else if(e.ClickedItem == tsmiUnload)//Выгрузить плагин
+			}*/ else if(e.ClickedItem == tsmiUnload)//Unload plugin
 			{
 				if(MessageBox.Show(Resources.msgConfirmUnload, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 					if(this.Plugin.HostWindows.Plugins.UnloadPlugin(plugin))
@@ -343,13 +343,13 @@ namespace Plugin.Configuration
 			}
 		}
 
-		private Int32? _searchHeigth;
+		private Int32? _searchHeight;
 		private void tsSearch_Resize(Object sender, EventArgs e)
 		{
-			if(this._searchHeigth == null)
-				this._searchHeigth = tsSearch.Height;
+			if(this._searchHeight == null)
+				this._searchHeight = tsSearch.Height;
 			txtSearch.Size = new Size(tsSearch.Width - bnSearch.Width - 20, txtSearch.Height);
-			tsSearch.Height = this._searchHeigth.Value;
+			tsSearch.Height = this._searchHeight.Value;
 		}
 
 		private void bnSearch_Click(Object sender, EventArgs e)
