@@ -3,6 +3,8 @@
 		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 	</PropertyGroup>
 	<ItemGroup>
-		<GlobalPackageReference Include="SAL.Windows" Version="1.2.10" />
+		<GlobalPackageReference Include="SAL.Windows" Version="1.2.10">
+			<ExcludeAssets>runtime</ExcludeAssets>
+		</GlobalPackageReference>
 	</ItemGroup>
 </Project>
