@@ -1,4 +1,5 @@
 # Plugin.Configuration
+[![Auto build](https://github.com/DKorablin/Plugin.Configuration/actions/workflows/release.yml/badge.svg)](https://github.com/DKorablin/Plugin.Configuration/releases/latest)
 
 UI plugin that adds a rich, unified configuration and management experience for SAL Windows host applications. It provides a modal/tool window (PluginsDlg) that lets end‑users discover, inspect, configure, search, and unload runtime plugins exposed by the SAL framework.
 
