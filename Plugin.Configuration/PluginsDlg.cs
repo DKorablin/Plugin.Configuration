@@ -281,9 +281,9 @@ namespace Plugin.Configuration
 						dlg.ShowDialog();
 			}*/ else if(e.ClickedItem == tsmiUnload)//Unload plugin
 			{
-				if(MessageBox.Show(Resources.msgConfirmUnload, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-					if(this.Plugin.HostWindows.Plugins.UnloadPlugin(plugin))
-						lvPlugins.Items.Remove(lvPlugins.SelectedItems[0]);
+				if(MessageBox.Show(Resources.msgConfirmUnload, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes
+					&& this.Plugin.HostWindows.Plugins.UnloadPlugin(plugin))
+					lvPlugins.Items.Remove(lvPlugins.SelectedItems[0]);
 			}
 		}
 
