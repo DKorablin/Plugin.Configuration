@@ -13,6 +13,25 @@
 		<DefineConstants>$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
+	<!--nuspec-->
+	<PropertyGroup>
+		<PackageId>AlphaOmega.SAL.Plugin.Configuration</PackageId>
+		<Version>$(Version)</Version>
+		<Title>UI for SAL Plugins configuration</Title>
+		<Description>Configuration plugin for SAL Windows hosts applications</Description>
+		<Authors>Danila Korablin</Authors>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>docs\README.md</PackageReadmeFile>
+		<PackageIcon>docs\SAL.100.png</PackageIcon>
+		<RepositoryUrl>https://github.com/DKorablin/Plugin.Configuration</RepositoryUrl>
+		<PackageTags>SAL plugin windows configuration</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\docs" />
+		<None Include="..\Images.Shared\SAL.100.png" Pack="true" PackagePath="\docs" />
+	</ItemGroup>
+
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<Optimize>true</Optimize>
 		<PublishSingleFile>true</PublishSingleFile>
@@ -27,23 +46,6 @@
 		<AssemblyAttributes Include="System.Runtime.Versioning.SupportedOSPlatform">
 			<_Parameter1>Windows</_Parameter1>
 		</AssemblyAttributes>
-	</ItemGroup>
-
-	<!--nuspec-->
-	<PropertyGroup>
-		<PackageId>AlphaOmega.SAL.Plugin.Configuration</PackageId>
-		<Version>$(Version)</Version>
-		<Title>UI for SAL Plugins configuration</Title>
-		<Description>Configuration plugin for SAL Windows hosts applications</Description>
-		<Authors>Danila Korablin</Authors>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReadmeFile>docs\README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/DKorablin/Plugin.Configuration</RepositoryUrl>
-		<PackageTags>SAL plugin windows configuration</PackageTags>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<None Include="..\README.md" Pack="true" PackagePath="\docs" />
 	</ItemGroup>
 
 	<ItemGroup>
