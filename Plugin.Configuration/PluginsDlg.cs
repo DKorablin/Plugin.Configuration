@@ -137,9 +137,11 @@ namespace Plugin.Configuration
 					txtDescription.Text = plugin.Description;
 
 					tt.SetToolTip(txtSource, plugin.Source);
-					if(plugin.Instance is IPluginSettings && tabSettings.Parent == null)//Setting up the basic plugin settings dialog
-						tabMain.Controls.Add(tabSettings);
-					else if(tabSettings.Parent != null)
+					if(plugin.Instance is IPluginSettings)//Setting up the basic plugin settings dialog
+					{
+						if(tabSettings.Parent == null)// We only add the tab if it is not already added
+							tabMain.Controls.Add(tabSettings);
+					} else if(tabSettings.Parent != null)
 						tabMain.Controls.Remove(tabSettings);
 
 					IPluginMethodInfo member = plugin.Type.GetMember<IPluginMethodInfo>(PluginMessage.GetPluginOptionsControl);
