@@ -167,6 +167,11 @@ namespace Plugin.Configuration
 			} catch(Exception exc)
 			{
 				this.Plugin.Trace.TraceData(TraceEventType.Error, 10, exc);
+
+				if(tabSettings.Parent != null)//Removing both tabs on exception
+					tabMain.TabPages.Remove(tabSettings);
+				if(tabOptions.Parent != null)
+					tabMain.TabPages.Remove(tabOptions);
 			}
 		}
 
