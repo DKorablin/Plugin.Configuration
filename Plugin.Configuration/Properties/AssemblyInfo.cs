@@ -5,4 +5,3 @@ using System.Runtime.InteropServices;
 [assembly: System.CLSCompliant(true)]
 
 [assembly: AssemblyDescription("UI for Plugins configuration")]
-[assembly: AssemblyCopyright("Copyright © Danila Korablin 2012-2024")]
