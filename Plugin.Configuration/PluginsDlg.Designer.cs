@@ -162,7 +162,7 @@
 			// lvPlugins
 			// 
 			this.lvPlugins.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            colName});
+			colName});
 			resources.ApplyResources(this.lvPlugins, "lvPlugins");
 			this.lvPlugins.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.lvPlugins.HideSelection = false;
@@ -187,8 +187,8 @@
 			this.tsSearch.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.tsSearch.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.tsSearch.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.txtSearch,
-            this.bnSearch});
+			this.txtSearch,
+			this.bnSearch});
 			this.tsSearch.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
 			resources.ApplyResources(this.tsSearch, "tsSearch");
 			this.tsSearch.Name = "tsSearch";
@@ -248,8 +248,8 @@
 			// 
 			this.cmsSettings.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.cmsSettings.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiSettingsReset,
-            this.tsmiSettingsDescription});
+			this.tsmiSettingsReset,
+			this.tsmiSettingsDescription});
 			this.cmsSettings.Name = "cmsSettings";
 			resources.ApplyResources(this.cmsSettings, "cmsSettings");
 			this.cmsSettings.Opening += new System.ComponentModel.CancelEventHandler(this.cmsSettings_Opening);
@@ -269,8 +269,8 @@
 			// 
 			this.cmsPlugin.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.cmsPlugin.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiReset,
-            this.tsmiUnload});
+			this.tsmiReset,
+			this.tsmiUnload});
 			this.cmsPlugin.Name = "cmsPlugin";
 			resources.ApplyResources(this.cmsPlugin, "cmsPlugin");
 			this.cmsPlugin.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsPlugin_ItemClicked);
