@@ -13,7 +13,7 @@ namespace Plugin.Configuration
 {
 	internal partial class PluginsDlg : Form
 	{
-		protected PluginWindows Plugin { get; private set; }
+		protected PluginWindows Plugin { get; }
 
 		/// <summary>The selected plugin in the list</summary>
 		protected IPluginDescription SelectedPlugin
