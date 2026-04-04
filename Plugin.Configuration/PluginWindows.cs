@@ -52,7 +52,8 @@ namespace Plugin.Configuration
 
 		Boolean IPlugin.OnDisconnection(DisconnectMode mode)
 		{
-			this._plugins?.Dispose();
+			if(this._plugins != null && !this._plugins.IsDisposed)
+				this._plugins.Dispose();
 
 			if(this.ConfigMenu != null)
 				this.HostWindows.MainMenu.Items.Remove(this.ConfigMenu);
