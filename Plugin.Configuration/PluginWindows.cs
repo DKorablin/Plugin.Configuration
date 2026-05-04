@@ -9,10 +9,9 @@ namespace Plugin.Configuration
 	public class PluginWindows : IPlugin, IPluginSettings<PluginSettings>
 	{
 		private PluginSettings _settings;
-		private TraceSource _trace;
 		private PluginsDlg _plugins;
 
-		internal TraceSource Trace => this._trace ?? (this._trace = PluginWindows.CreateTraceSource<PluginWindows>());
+		internal ITraceSource Trace { get; }
 
 		internal IHostWindows HostWindows { get; }
 
@@ -33,8 +32,11 @@ namespace Plugin.Configuration
 			}
 		}
 
-		public PluginWindows(IHostWindows hostWindows)
-			=> this.HostWindows = hostWindows ?? throw new ArgumentNullException(nameof(hostWindows));
+		public PluginWindows(IHostWindows hostWindows, ITraceSource trace)
+		{
+			this.HostWindows = hostWindows ?? throw new ArgumentNullException(nameof(hostWindows));
+			this.Trace = trace ?? throw new ArgumentNullException(nameof(trace));
+		}
 
 		Boolean IPlugin.OnConnection(ConnectMode mode)
 		{
@@ -58,15 +60,6 @@ namespace Plugin.Configuration
 			if(this.ConfigMenu != null)
 				this.HostWindows.MainMenu.Items.Remove(this.ConfigMenu);
 			return true;
-		}
-
-		private static TraceSource CreateTraceSource<T>(String name = null) where T : IPlugin
-		{
-			TraceSource result = new TraceSource(typeof(T).Assembly.GetName().Name + name);
-			result.Switch.Level = SourceLevels.All;
-			result.Listeners.Remove("Default");
-			result.Listeners.AddRange(System.Diagnostics.Trace.Listeners);
-			return result;
 		}
 
 		private void ConfigMenu_Click(Object sender, EventArgs e)

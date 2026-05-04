@@ -15,8 +15,7 @@ namespace Plugin.Configuration
 			foreach(String value in SearchProperties(plugin, false))
 				yield return value;
 
-			IPluginSettings settings = plugin.Instance as IPluginSettings;
-			if(settings != null)
+			if(plugin.Instance is IPluginSettings settings)
 				foreach(String value in SearchProperties(settings.Settings, true))
 					yield return value;
 		}
